@@ -5,9 +5,12 @@ from dotenv import load_dotenv
 # variables at import time (vector_store, embeddings, llm, auth).
 load_dotenv()
 
+from pathlib import Path
 from uuid import uuid4
 import logging
 from fastapi import FastAPI, HTTPException, Depends, Request, Query
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field, field_validator
 from datetime import datetime, UTC
 from qdrant_client.models import (
@@ -69,6 +72,24 @@ Base.metadata.create_all(bind=engine)
 # ---------------------------------------------------------------------------
 
 app.include_router(auth_router)
+
+# ---------------------------------------------------------------------------
+# Static files — serves the frontend at /static/
+# ---------------------------------------------------------------------------
+
+_static_dir = Path(__file__).resolve().parent.parent / "static"
+if _static_dir.is_dir():
+    app.mount("/static", StaticFiles(directory=str(_static_dir)), name="static")
+
+
+@app.get("/ui", include_in_schema=False)
+def serve_ui():
+    """Serve the frontend SPA."""
+    index = _static_dir / "index.html"
+    if index.exists():
+        return FileResponse(str(index))
+    raise HTTPException(status_code=404, detail="Frontend not found")
+
 
 # gemini-embedding-001 = 3072 dimensions
 VECTOR_SIZE = 3072

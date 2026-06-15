@@ -1,0 +1,435 @@
+/* ===================================================================
+   Memoria — Minimal Dark Theme
+   =================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --border: #2a2a2a;
+    --text: #ffffff;
+    --text-secondary: #a0a0a0;
+    --danger: #cc3333;
+    --success: #2a9d2a;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                 Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* ===================================================================
+   Toast
+   =================================================================== */
+
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 13px;
+    z-index: 1000;
+    max-width: 400px;
+}
+
+.toast.error {
+    border-color: var(--danger);
+    color: #ff6666;
+}
+
+.toast.success {
+    border-color: var(--success);
+    color: #66cc66;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ===================================================================
+   Auth View
+   =================================================================== */
+
+.auth-view {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 40px;
+}
+
+.auth-title {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.auth-subtitle {
+    color: var(--text-secondary);
+    font-size: 13px;
+    margin-bottom: 32px;
+}
+
+.auth-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.tab {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 14px;
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+
+.tab.active {
+    color: var(--text);
+    border-bottom-color: var(--text);
+}
+
+/* ===================================================================
+   Forms
+   =================================================================== */
+
+label {
+    display: block;
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    margin-top: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+    border-color: #555;
+}
+
+input[type="file"] {
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+button[type="submit"],
+#import-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background: var(--text);
+    color: var(--bg);
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover,
+#import-btn:hover {
+    background: #dddddd;
+}
+
+button[type="submit"]:disabled,
+#import-btn:disabled {
+    background: #555;
+    cursor: not-allowed;
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+}
+
+.form-group {
+    flex: 1;
+}
+
+.input-row {
+    display: flex;
+    gap: 12px;
+}
+
+.input-row input[type="text"] {
+    flex: 1;
+}
+
+.input-row button {
+    width: auto;
+    margin-top: 0;
+    padding: 10px 24px;
+    white-space: nowrap;
+}
+
+/* ===================================================================
+   Nav
+   =================================================================== */
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+}
+
+.nav-title {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.nav-user {
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.btn-small {
+    padding: 6px 14px;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.btn-small:hover {
+    border-color: #555;
+}
+
+/* ===================================================================
+   Main Content
+   =================================================================== */
+
+.main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.card {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 24px;
+}
+
+.card h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.section-header h2 {
+    margin-bottom: 0;
+}
+
+.section-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.help-text {
+    color: var(--text-secondary);
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+
+/* ===================================================================
+   Memory Items
+   =================================================================== */
+
+.memory-item {
+    padding: 16px;
+    border: 1px solid var(--border);
+    margin-bottom: 8px;
+}
+
+.memory-text {
+    font-size: 14px;
+    margin-bottom: 8px;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.memory-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.memory-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+}
+
+.memory-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-danger {
+    padding: 4px 12px;
+    background: none;
+    border: 1px solid var(--danger);
+    color: var(--danger);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.btn-danger:hover {
+    background: var(--danger);
+    color: var(--text);
+}
+
+/* ===================================================================
+   Search / Ask Results
+   =================================================================== */
+
+.result-item {
+    padding: 12px;
+    border: 1px solid var(--border);
+    margin-top: 8px;
+}
+
+.result-score {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+
+.result-text {
+    font-size: 14px;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.answer-box {
+    margin-top: 16px;
+    padding: 16px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+}
+
+.answer-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.answer-text {
+    font-size: 14px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    line-height: 1.7;
+}
+
+.loading {
+    color: var(--text-secondary);
+    font-size: 13px;
+    padding: 12px 0;
+}
+
+.empty-state {
+    color: var(--text-secondary);
+    font-size: 13px;
+    padding: 24px 0;
+    text-align: center;
+}
+
+/* ===================================================================
+   Load More
+   =================================================================== */
+
+#load-more-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 13px;
+    cursor: pointer;
+}
+
+#load-more-btn:hover {
+    border-color: #555;
+    color: var(--text);
+}

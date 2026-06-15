@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memoria</title>
+    <meta name="description" content="Memoria — your personal AI memory platform">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+    <!-- Toast notifications -->
+    <div id="toast" class="toast hidden"></div>
+
+    <!-- ================================================================= -->
+    <!-- Auth View                                                          -->
+    <!-- ================================================================= -->
+    <div id="auth-view" class="auth-view">
+        <div class="auth-container">
+            <h1 class="auth-title">Memoria</h1>
+            <p class="auth-subtitle">Your personal AI memory layer</p>
+
+            <div class="auth-tabs">
+                <button id="tab-login" class="tab active" onclick="showLoginForm()">Login</button>
+                <button id="tab-register" class="tab" onclick="showRegisterForm()">Register</button>
+            </div>
+
+            <!-- Login -->
+            <form id="login-form" onsubmit="handleLogin(event)">
+                <label for="login-username">Username</label>
+                <input id="login-username" type="text" required autocomplete="username">
+
+                <label for="login-password">Password</label>
+                <input id="login-password" type="password" required autocomplete="current-password">
+
+                <button type="submit" id="login-btn">Login</button>
+            </form>
+
+            <!-- Register -->
+            <form id="register-form" class="hidden" onsubmit="handleRegister(event)">
+                <label for="reg-username">Username</label>
+                <input id="reg-username" type="text" required autocomplete="username"
+                       placeholder="3-32 chars, lowercase, a-z 0-9 _">
+
+                <label for="reg-email">Email</label>
+                <input id="reg-email" type="email" required autocomplete="email">
+
+                <label for="reg-password">Password</label>
+                <input id="reg-password" type="password" required autocomplete="new-password"
+                       placeholder="Minimum 8 characters">
+
+                <button type="submit" id="register-btn">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- Dashboard View                                                     -->
+    <!-- ================================================================= -->
+    <div id="dashboard-view" class="hidden">
+
+        <!-- Nav -->
+        <nav class="nav">
+            <span class="nav-title">Memoria</span>
+            <div class="nav-right">
+                <span id="nav-user" class="nav-user"></span>
+                <button class="btn-small" onclick="handleLogout()">Logout</button>
+            </div>
+        </nav>
+
+        <main class="main">
+
+            <!-- Add Memory -->
+            <section class="card">
+                <h2>Add Memory</h2>
+                <form id="memory-form" onsubmit="handleAddMemory(event)">
+                    <label for="mem-text">Memory text</label>
+                    <textarea id="mem-text" rows="4" required placeholder="What do you want to remember?"></textarea>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="mem-source">Source</label>
+                            <input id="mem-source" type="text" value="manual" placeholder="manual">
+                        </div>
+                        <div class="form-group">
+                            <label for="mem-category">Category</label>
+                            <input id="mem-category" type="text" value="general" placeholder="general">
+                        </div>
+                    </div>
+
+                    <label for="mem-tags">Tags (comma-separated)</label>
+                    <input id="mem-tags" type="text" placeholder="work, ideas, personal">
+
+                    <button type="submit" id="add-mem-btn">Save Memory</button>
+                </form>
+            </section>
+
+            <!-- Search -->
+            <section class="card">
+                <h2>Search Memories</h2>
+                <form id="search-form" onsubmit="handleSearch(event)">
+                    <div class="input-row">
+                        <input id="search-input" type="text" required placeholder="Search your memories...">
+                        <button type="submit" id="search-btn">Search</button>
+                    </div>
+                </form>
+                <div id="search-results"></div>
+            </section>
+
+            <!-- Ask -->
+            <section class="card">
+                <h2>Ask Memoria</h2>
+                <form id="ask-form" onsubmit="handleAsk(event)">
+                    <div class="input-row">
+                        <input id="ask-input" type="text" required placeholder="Ask a question about your memories...">
+                        <button type="submit" id="ask-btn">Ask</button>
+                    </div>
+                </form>
+                <div id="ask-results"></div>
+            </section>
+
+            <!-- My Memories -->
+            <section class="card">
+                <div class="section-header">
+                    <h2>My Memories</h2>
+                    <div class="section-actions">
+                        <button class="btn-small" onclick="handleExport()">Export</button>
+                        <button class="btn-small" onclick="loadMemories(true)">Refresh</button>
+                    </div>
+                </div>
+                <div id="memories-list"></div>
+                <button id="load-more-btn" class="hidden" onclick="loadMemories(false)">Load More</button>
+            </section>
+
+            <!-- Import -->
+            <section class="card">
+                <h2>Import Memories</h2>
+                <p class="help-text">Upload a JSON array of memories. Each item needs at minimum a "text" field.</p>
+                <div class="input-row">
+                    <input id="import-file" type="file" accept=".json">
+                    <button id="import-btn" onclick="handleImport()">Import</button>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
