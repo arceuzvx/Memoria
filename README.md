@@ -255,4 +255,4 @@ The focus is not another chatbot — it's the infrastructure layer between users
 
 ## License
 
-This project is for educational and personal use.
+This project is licensed under the [MIT License](LICENSE).
