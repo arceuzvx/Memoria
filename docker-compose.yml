@@ -10,5 +10,11 @@ services:
 
   qdrant:
     image: qdrant/qdrant
-    ports:
-      - "6333:6333"
+    environment:
+      - QDRANT__SERVICE__API_KEY=${QDRANT_API_KEY}
+    # Port is intentionally NOT exposed to the host.
+    # Qdrant is only accessible via the internal Docker network,
+    # and requires an API key for all requests.
+    # Uncomment the following ONLY for local debugging:
+    # ports:
+    #   - "6333:6333"

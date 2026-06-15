@@ -1,0 +1,28 @@
+# Secrets — NEVER bake into image
+.env
+.env.*
+
+# Database files
+*.db
+
+# Version control
+.git
+.gitignore
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+*.swo
+Thumbs.db
+.DS_Store
+
+# Documentation (not needed at runtime)
+docs/
+README.md
